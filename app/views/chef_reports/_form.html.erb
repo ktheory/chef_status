@@ -1,0 +1,25 @@
+<%= form_for(@chef_report) do |f| %>
+  <% if @chef_report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chef_report.errors.count, "error") %> prohibited this chef_report from being saved:</h2>
+
+      <ul>
+      <% @chef_report.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :node %><br />
+    <%= f.text_field :node %>
+  </div>
+  <div class="field">
+    <%= f.label :success %><br />
+    <%= f.check_box :success %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

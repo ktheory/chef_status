@@ -1,4 +1,6 @@
 ChefStatus::Application.routes.draw do
+  resources :chef_reports
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

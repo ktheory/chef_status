@@ -1,0 +1,25 @@
+<h1>Listing chef_reports</h1>
+
+<table>
+  <tr>
+    <th>Node</th>
+    <th>Success</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @chef_reports.each do |chef_report| %>
+  <tr>
+    <td><%= chef_report.node %></td>
+    <td><%= chef_report.success %></td>
+    <td><%= link_to 'Show', chef_report %></td>
+    <td><%= link_to 'Edit', edit_chef_report_path(chef_report) %></td>
+    <td><%= link_to 'Destroy', chef_report, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Chef report', new_chef_report_path %>
