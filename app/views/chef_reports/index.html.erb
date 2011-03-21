@@ -24,19 +24,7 @@
 </table>
 
 
-  <%= render :partial => 'nodes', :locals => {:name => 'ok_nodes', :reports => @ok_reports} %>
-  <%= render :partial => 'nodes', :locals => {:name => 'failed_nodes', :reports => @failed_reports} %>
-  <%= render :partial => 'nodes', :locals => {:name => 'missing_nodes', :reports => @missing_reports} %>
-
-
-  <% @ok_reports.each do |chef_report| %>
-  <tr>
-    <td><%= chef_report.node %></td>
-    <td><%= chef_report.success %></td>
-    <td><%= link_to 'Show', chef_report %></td>
-    <td><%= link_to 'Edit', edit_chef_report_path(chef_report) %></td>
-    <td><%= link_to 'Destroy', chef_report, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<%= render :partial => 'nodes', :locals => {:name => 'ok_nodes', :reports => @ok_reports} %>
+<%= render :partial => 'nodes', :locals => {:name => 'failed_nodes', :reports => @failed_reports} %>
+<%= render :partial => 'nodes', :locals => {:name => 'missing_nodes', :reports => @missing_reports} %>
 
