@@ -1,0 +1,19 @@
+<h2 id="<%= name %>">
+  <% if reports.empty? %>No <% end %><%= name.humanize %>
+</h2>
+<% if reports.any? %>
+  <table>
+    <tr>
+      <th>Node name</th>
+      <th>Last seen</th>
+      <th>Remove</th>
+    </tr>
+    <% reports.each do |report| %>
+      <tr>
+        <td><%= report.node %></td>
+        <td><%= friendly_time report.updated_at %> ago</td>
+        <td><%= link_to 'Remove', report, :confirm => "Are you sure you want to remove node #{report.node}?", :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

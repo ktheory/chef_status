@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(:version => 20110320181307) do
 
   create_table "chef_reports", :force => true do |t|
     t.string   "node"
-    t.boolean  "success"
+    t.boolean  "success",    :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

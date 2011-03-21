@@ -38,5 +38,10 @@ module ChefStatus
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    config.middleware.use Rack::Auth::Basic, "Chef Status" do |username, password|
+      'Password1' == password && 'chef' == username
+    end
+
   end
 end

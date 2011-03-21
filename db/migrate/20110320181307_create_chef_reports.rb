@@ -2,7 +2,7 @@ class CreateChefReports < ActiveRecord::Migration
   def self.up
     create_table :chef_reports do |t|
       t.string :node
-      t.boolean :success
+      t.boolean :success, :null => false, :default => true
 
       t.timestamps
     end

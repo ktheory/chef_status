@@ -1,15 +1,35 @@
-<h1>Listing chef_reports</h1>
+<h1>Chef Node Status</h1>
 
 <table>
   <tr>
-    <th>Node</th>
-    <th>Success</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Status</th>
+    <th>Count</th>
+    <th>Description</th>
   </tr>
+  <tr>
+    <td><%= link_to 'OK', '#ok_nodes' %></td>
+    <td><%= @ok_reports.size %></td>
+    <td>Nodes with <b>successful</b> chef runs in the last <%= reporting_interval %></td>
+  </tr>
+  <tr>
+    <td><%= link_to 'Failed', '#failed_nodes' %></td>
+    <td><%= @failed_reports.size %></td>
+    <td>Nodes with <b>failed</b> chef runs in the last <%= reporting_interval %></td>
+  </tr>
+  <tr>
+    <td><%= link_to 'Missing', '#missing_nodes' %></td>
+    <td><%= @missing_reports.size %></td>
+    <td>Nodes that have not reported a chef run in the last <%= reporting_interval %></td>
+  </tr>
+</table>
 
-<% @chef_reports.each do |chef_report| %>
+
+  <%= render :partial => 'nodes', :locals => {:name => 'ok_nodes', :reports => @ok_reports} %>
+  <%= render :partial => 'nodes', :locals => {:name => 'failed_nodes', :reports => @failed_reports} %>
+  <%= render :partial => 'nodes', :locals => {:name => 'missing_nodes', :reports => @missing_reports} %>
+
+
+  <% @ok_reports.each do |chef_report| %>
   <tr>
     <td><%= chef_report.node %></td>
     <td><%= chef_report.success %></td>
@@ -20,6 +40,3 @@
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Chef report', new_chef_report_path %>
