@@ -8,11 +8,8 @@ class ChefReport < ActiveRecord::Base
 
   validates :node, :uniqueness => true, :presence => true
 
+  # Update timestamps even if no other attributes changed
   after_save :touch
-
-  def to_param
-    node
-  end
 
   # Returns 'ok', 'failed', or 'missing'
   def status

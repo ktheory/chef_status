@@ -25,8 +25,8 @@ class ChefReportsController < ApplicationController
   end
 
   def destroy
-    @chef_report = ChefReport.find_by_node(params[:id])
-    @chef_report.destroy
+    @chef_report = ChefReport.find_by_id(params[:id])
+    @chef_report.destroy if @chef_report
 
     respond_to do |format|
       format.html { redirect_to(chef_reports_url) }
