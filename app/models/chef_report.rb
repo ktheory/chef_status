@@ -11,6 +11,10 @@ class ChefReport < ActiveRecord::Base
   # Update timestamps even if no other attributes changed
   after_save :touch
 
+  def self.status_hash
+    all.inject({}){|hash, report| hash[report.node] = report.status; hash}
+  end
+
   # Returns 'ok', 'failed', or 'missing'
   def status
     return 'missing' if missing?

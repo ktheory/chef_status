@@ -1,12 +1,15 @@
 class ChefReportsController < ApplicationController
 
   def index
-    @ok_reports = ChefReport.ok
-    @missing_reports = ChefReport.missing
-    @failed_reports = ChefReport.failed
     respond_to do |format|
-      format.html # index.html.erb
-      format.json  { render :json => ChefReports.all }
+      format.html do # index.html.erb
+        @ok_reports = ChefReport.ok
+        @missing_reports = ChefReport.missing
+        @failed_reports = ChefReport.failed
+      end
+      format.json  do
+        render :json => ChefReport.status_hash
+      end
     end
   end
 
