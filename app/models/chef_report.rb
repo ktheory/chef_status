@@ -1,6 +1,6 @@
 class ChefReport < ActiveRecord::Base
 
-  default_scope order('node DESC')
+  default_scope order('node ASC')
   scope :live,    lambda { where("updated_at >= ?", Time.now - REPORTING_INTERVAL) }
   scope :missing, lambda { where("updated_at < ?", Time.now - REPORTING_INTERVAL) }
   scope :ok,      live.where(:success => true)
