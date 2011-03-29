@@ -7,24 +7,24 @@
     <th>Description</th>
   </tr>
   <tr>
-    <td><%= link_to 'OK', '#ok_nodes' %></td>
-    <td><%= @ok_reports.size %></td>
+    <td><%= link_to 'Converged', '#converged' %></td>
+    <td><%= @converged.size %></td>
     <td>Nodes with <b>successful</b> chef runs in the last <%= reporting_interval %></td>
   </tr>
   <tr>
-    <td><%= link_to 'Failed', '#failed_nodes' %></td>
-    <td><%= @failed_reports.size %></td>
+    <td><%= link_to 'Failing', '#failing' %></td>
+    <td><%= @failing.size %></td>
     <td>Nodes with <b>failed</b> chef runs in the last <%= reporting_interval %></td>
   </tr>
   <tr>
-    <td><%= link_to 'Missing', '#missing_nodes' %></td>
-    <td><%= @missing_reports.size %></td>
+    <td><%= link_to 'Offline', '#offline' %></td>
+    <td><%= @offline.size %></td>
     <td>Nodes that have not reported a chef run in the last <%= reporting_interval %></td>
   </tr>
 </table>
 
 
-<%= render :partial => 'nodes', :locals => {:name => 'ok_nodes', :reports => @ok_reports} %>
-<%= render :partial => 'nodes', :locals => {:name => 'failed_nodes', :reports => @failed_reports} %>
-<%= render :partial => 'nodes', :locals => {:name => 'missing_nodes', :reports => @missing_reports} %>
+<%= render :partial => 'nodes', :locals => {:name => 'converged', :reports => @converged} %>
+<%= render :partial => 'nodes', :locals => {:name => 'failing', :reports => @failing} %>
+<%= render :partial => 'nodes', :locals => {:name => 'offline', :reports => @offline} %>
 

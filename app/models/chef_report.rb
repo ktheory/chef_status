@@ -1,10 +1,10 @@
 class ChefReport < ActiveRecord::Base
 
   default_scope order('node ASC')
-  scope :live,    lambda { where("updated_at >= ?", Time.now - REPORTING_INTERVAL) }
-  scope :missing, lambda { where("updated_at < ?", Time.now - REPORTING_INTERVAL) }
-  scope :ok,      live.where(:success => true)
-  scope :failed,  live.where(:success => false)
+  scope :live,      lambda { where("updated_at >= ?", Time.now - REPORTING_INTERVAL) }
+  scope :offline,   lambda { where("updated_at < ?", Time.now - REPORTING_INTERVAL) }
+  scope :converged, live.where(:success => true)
+  scope :failing,   live.where(:success => false)
 
   validates :node, :uniqueness => true, :presence => true
 
@@ -17,11 +17,11 @@ class ChefReport < ActiveRecord::Base
 
   # Returns 'ok', 'failed', or 'missing'
   def status
-    return 'missing' if missing?
-    success? ? 'ok' : 'failed'
+    return 'offline' if offline?
+    success? ? 'converged' : 'failing'
   end
 
-  def missing?
+  def offline?
     updated_at < Time.now - REPORTING_INTERVAL
   end
 end

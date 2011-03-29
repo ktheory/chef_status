@@ -3,9 +3,9 @@ class ChefReportsController < ApplicationController
   def index
     respond_to do |format|
       format.html do # index.html.erb
-        @ok_reports = ChefReport.ok
-        @missing_reports = ChefReport.missing
-        @failed_reports = ChefReport.failed
+        @converged = ChefReport.converged
+        @offline   = ChefReport.offline
+        @failing   = ChefReport.failing
       end
       format.json  do
         render :json => ChefReport.status_hash
