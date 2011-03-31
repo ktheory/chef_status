@@ -1,8 +1,8 @@
-<h2 id="<%= name %>">
-  <% if reports.empty? %>No <% end %><%= name.humanize %>
-</h2>
 <% if reports.any? %>
-  <table>
+<h2 id="<%= name %>">
+  <%= name.humanize %>
+</h2>
+<table>
     <tr>
       <th>Node name</th>
       <th>Last seen</th>
